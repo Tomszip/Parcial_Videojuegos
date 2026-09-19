@@ -301,7 +301,7 @@ sources/0 = SubResource("TileSetAtlasSource_terreno")
 [node name="Nivel" type="Node2D" unique_id=1640780587]
 script = ExtResource("9_nivelgd")
 
-[node name="Musica" type="AudioStreamPlayer" parent="."]
+[node name="Musica" type="AudioStreamPlayer" parent="." unique_id=1876117521]
 stream = ExtResource("10_musica")
 bus = &"Musica"
 
