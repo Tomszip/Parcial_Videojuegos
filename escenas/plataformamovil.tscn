@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bp1u466yc82hd"]
+
+[ext_resource type="Script" uid="uid://doo83pj6dm86i" path="res://scripts/plataformamovil.gd" id="1_gnm7w"]
+[ext_resource type="Texture2D" uid="uid://cw2gpel08hvji" path="res://assets/sprites/trampas/plataforma_movil.png" id="2_wxh6l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q54k1"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(0, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iduci"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(32, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tia5a"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(64, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4fbm"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(96, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idk8m"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(128, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgr1s"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(160, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgj85"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(192, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6my8"]
+atlas = ExtResource("2_wxh6l")
+region = Rect2(224, 0, 32, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gnm7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q54k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iduci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tia5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4fbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idk8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgr1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgj85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6my8")
+}],
+"loop": 1,
+"name": &"plataforma",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gp7p"]
+size = Vector2(32, 8)
+
+[node name="Plataformamovil" type="AnimatableBody2D" unique_id=675315352]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_gnm7w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=191608518]
+sprite_frames = SubResource("SpriteFrames_gnm7w")
+animation = &"plataforma"
+autoplay = "plataforma"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=410102967]
+shape = SubResource("RectangleShape2D_1gp7p")

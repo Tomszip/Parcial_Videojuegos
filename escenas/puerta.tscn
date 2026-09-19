@@ -1,0 +1,126 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="Texture2D" uid="uid://jkoy5qi1k0ic" path="res://assets/sprites/puerta/puerta_idle.png" id="1_idle"]
+[ext_resource type="Texture2D" uid="uid://drfpq84h0r8or" path="res://assets/sprites/puerta/puerta_abierta.png" id="2_abierta"]
+[ext_resource type="Script" path="res://scripts/puerta.gd" id="3_script"]
+[ext_resource type="Texture2D" uid="uid://gflmos1knh3c" path="res://assets/sprites/particulas/confeti.png" id="4_confeti"]
+
+[sub_resource type="AtlasTexture" id="Atlas_cerrada"]
+atlas = ExtResource("1_idle")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab0"]
+atlas = ExtResource("2_abierta")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab1"]
+atlas = ExtResource("2_abierta")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab2"]
+atlas = ExtResource("2_abierta")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab3"]
+atlas = ExtResource("2_abierta")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab4"]
+atlas = ExtResource("2_abierta")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab5"]
+atlas = ExtResource("2_abierta")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab6"]
+atlas = ExtResource("2_abierta")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_ab7"]
+atlas = ExtResource("2_abierta")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_puerta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Atlas_cerrada")
+}],
+"loop": true,
+"name": &"cerrada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Atlas_ab0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab3")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab4")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab5")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab6")
+}, {
+"duration": 1.0,
+"texture": SubResource("Atlas_ab7")
+}],
+"loop": false,
+"name": &"abierta",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="Rect_puerta"]
+size = Vector2(32, 40)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_confeti"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Puerta" type="Area2D"]
+collision_layer = 8
+collision_mask = 1
+script = ExtResource("3_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_puerta")
+animation = &"cerrada"
+autoplay = "cerrada"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("Rect_puerta")
+
+[node name="Confeti" type="CPUParticles2D" parent="."]
+position = Vector2(0, -30)
+emitting = false
+amount = 40
+lifetime = 1.0
+one_shot = true
+explosiveness = 0.85
+texture = ExtResource("4_confeti")
+material = SubResource("CanvasItemMaterial_confeti")
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 380)
+initial_velocity_min = 70.0
+initial_velocity_max = 150.0
+angular_velocity_min = -270.0
+angular_velocity_max = 270.0
+scale_amount_min = 0.6
+scale_amount_max = 1.1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

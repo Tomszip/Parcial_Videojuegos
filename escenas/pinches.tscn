@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://biyp7fbr0jyqf" path="res://assets/sprites/trampas/pinches.png" id="1_tex"]
+[ext_resource type="Script" path="res://scripts/pinches.gd" id="2_script"]
+
+[sub_resource type="RectangleShape2D" id="Rect_pinches"]
+size = Vector2(12, 5)
+
+[node name="Pinches" type="Area2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("2_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("Rect_pinches")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
